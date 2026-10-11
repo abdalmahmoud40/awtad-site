@@ -1,0 +1,7 @@
+/team /about 301
+/en/team /en/about 301
+/articles / 301
+/articles/* / 301
+/en/articles /en/ 301
+/terms / 301
+/en/terms /en/ 301
