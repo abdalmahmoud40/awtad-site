@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="166 120 190 163">
+<title>Awtad Alnokhbah</title>
+<defs>
+  <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5d6731"/><stop offset="1" stop-color="#3d4520"/></linearGradient>
+  <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c8746"/><stop offset="1" stop-color="#56602d"/></linearGradient>
+  <linearGradient id="g3" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b9a58"/><stop offset="1" stop-color="#16613a"/></linearGradient>
+  <linearGradient id="t1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#56612b"/><stop offset="1" stop-color="#363d1c"/></linearGradient>
+  <linearGradient id="t2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9bcbd"/><stop offset="1" stop-color="#8a8e90"/></linearGradient>
+</defs>
+<path d="M240.5,138.5 L257,175 L211,275 L178.5,275 Z" fill="url(#g1)"/>
+<path d="M242,128 L278,128 L308,193.5 L279.5,207 Z" fill="url(#g2)"/>
+<path d="M236,242 L250,225 L311,203 L345,275 L310,275 L293.5,241.5 Z" fill="url(#g3)"/>
+</svg>
