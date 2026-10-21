@@ -404,3 +404,4 @@ form.wa label.consent input{width:auto;margin-top:.45em}
 .social a:hover{background:var(--green)}
 .social svg{width:18px;height:18px;fill:currentColor}
 .info .social{margin-top:6px}
+.apply-form [hidden]{display:none!important}
