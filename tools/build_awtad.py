@@ -3,6 +3,11 @@ OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'public') +
 DOMAIN = 'https://awtad-trade.com'
 PHONE = '249912340786'; PHONE_TXT = '+249 91 234 0786'
 EMAIL = 'info@awtad-trade.com'
+EMAIL_SALES = 'sales@awtad-trade.com'
+EMAIL_PROC = 'procurement@awtad-trade.com'
+EMAIL_HR = 'hr@awtad-trade.com'
+def mailto(addr, subject=''):
+    return f'mailto:{addr}' + (('?subject=' + urllib.parse.quote(subject)) if subject else '')
 WA = f'https://wa.me/{PHONE}'
 MAP_Q = 'Wad Madani, Sudan'
 MAP_EMBED = 'https://www.google.com/maps?q=' + urllib.parse.quote_plus(MAP_Q) + '&output=embed'
@@ -154,7 +159,10 @@ def ld(lang, key, title, path):
          "areaServed":[{"@type":"Country","name":"السودان" if lang=='ar' else "Sudan"}],
          "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday"],"opens":"08:00","closes":"17:00"}],
          "knowsAbout":[s[lang][0] for s in SECT],
-         "contactPoint":[{"@type":"ContactPoint","telephone":"+"+PHONE,"contactType":"sales","availableLanguage":["Arabic","English"]}]}
+         "contactPoint":[{"@type":"ContactPoint","telephone":"+"+PHONE,"email":EMAIL,"contactType":"customer service","availableLanguage":["Arabic","English"]},
+                         {"@type":"ContactPoint","telephone":"+"+PHONE,"email":EMAIL_SALES,"contactType":"sales","availableLanguage":["Arabic","English"]},
+                         {"@type":"ContactPoint","email":EMAIL_PROC,"contactType":"purchasing","availableLanguage":["Arabic","English"]},
+                         {"@type":"ContactPoint","email":EMAIL_HR,"contactType":"human resources","availableLanguage":["Arabic","English"]}]}
     g=[org]
     if key=='index':
         g.append({"@type":"WebSite","url":DOMAIN+P(lang,''),"name":t['name'],"inLanguage":lang})
@@ -228,6 +236,7 @@ def page(lang, key, rel, title, desc, body, noindex=False):
       <li>{t['call']}: <a href="tel:+{PHONE}"><span class="ltr">{PHONE_TXT}</span></a></li>
       <li>{t['wa']}: <a href="{waq(t['wa_msg'])}" target="_blank" rel="noopener"><span class="ltr">{PHONE_TXT}</span></a></li>
       <li><a href="mailto:{EMAIL}">{EMAIL}</a></li>
+      <li><a href="{P(lang,'about')}#careers">{'الوظائف' if lang=='ar' else 'Careers'}: {EMAIL_HR}</a></li>
       <li>{t['addr']}</li>
       <li>{t['hours'][0]}</li><li>{t['hours'][1]}</li></ul></div>
   </div>
@@ -341,7 +350,12 @@ def info_box(lang):
     t=T[lang]; a=lang=='ar'
     return f'''<aside class="info"><h2>{'معلومات التواصل' if a else 'Contact details'}</h2><dl>
 <dt>{'الهاتف وواتساب' if a else 'Phone & WhatsApp'}</dt><dd><a href="tel:+{PHONE}"><span class="ltr">{PHONE_TXT}</span></a><br><a href="{waq(t['wa_msg'])}" target="_blank" rel="noopener">{'راسلنا على واتساب' if a else 'Message us on WhatsApp'}</a></dd>
-<dt>{'البريد الإلكتروني' if a else 'Email'}</dt><dd><a href="mailto:{EMAIL}">{EMAIL}</a></dd>
+<dt>{'البريد الإلكتروني' if a else 'Email'}</dt><dd><ul class="mails">
+<li><span>{'الاستفسارات العامة' if a else 'General enquiries'}</span><a href="{mailto(EMAIL)}">{EMAIL}</a></li>
+<li><span>{'المبيعات وعروض الأسعار' if a else 'Sales and quotations'}</span><a href="{mailto(EMAIL_SALES, 'طلب عرض سعر' if a else 'Quotation request')}">{EMAIL_SALES}</a></li>
+<li><span>{'الموردون والمشتريات' if a else 'Suppliers and procurement'}</span><a href="{mailto(EMAIL_PROC, 'عرض توريد' if a else 'Supply offer')}">{EMAIL_PROC}</a></li>
+<li><span>{'التوظيف' if a else 'Careers'}</span><a href="{mailto(EMAIL_HR, 'طلب توظيف' if a else 'Job application')}">{EMAIL_HR}</a></li>
+</ul></dd>
 <dt>{'العنوان' if a else 'Address'}</dt><dd>{t['addr']}<br><a href="{MAP_LINK}" target="_blank" rel="noopener">{'افتح على خرائط Google' if a else 'Open in Google Maps'}</a></dd>
 <dt>{t['f_hours']}</dt><dd>{t['hours'][0]}<br>{t['hours'][1]}</dd>
 </dl></aside>'''
@@ -448,6 +462,16 @@ def about_page(lang):
 <section class="blk sand"><div class="wrap">
 {head(lang,'التغطية الجغرافية' if a else 'Geographic coverage','مناطق العمل' if a else 'Where we work','مقرنا في ود مدني بولاية الجزيرة، وشبكة توزيعنا تغطي 8 ولايات.' if a else 'Headquartered in Wad Madani, Gezira State, with a distribution network covering 8 states.')}
 <ul class="states">{st}</ul>
+</div></section>
+<section class="blk" id="careers" style="scroll-margin-top:90px"><div class="wrap split careers">
+<div><span class="eyebrow">{SLAB}{'الوظائف' if a else 'Careers'}</span>
+<h2>{'انضم إلى فريق أوتاد النخبة' if a else 'Join the Awtad Alnokhbah team'}</h2>
+<p>{'نبحث دائماً عن كفاءات في المبيعات والتسويق الزراعي، والطب البيطري، والهندسة الزراعية، والمخازن والتوزيع، والمحاسبة. إذا كنت ترغب في العمل معنا فأرسل سيرتك الذاتية مع ذكر الوظيفة التي تهمك.' if a else 'We are always looking for talent in sales and agricultural marketing, veterinary medicine, agronomy, warehousing and distribution, and accounting. If you would like to work with us, send your CV and tell us which role interests you.'}</p>
+<ul class="checks"><li>{'أرسل السيرة الذاتية بصيغة PDF' if a else 'Send your CV as a PDF'}</li><li>{'اكتب في عنوان الرسالة المسمى الوظيفي والولاية' if a else 'Put the job title and your state in the subject line'}</li><li>{'نتواصل مع المرشحين المناسبين خلال أسبوعين' if a else 'We contact suitable candidates within two weeks'}</li></ul>
+<a class="btn btn-green" href="{mailto(EMAIL_HR, 'طلب توظيف - أوتاد النخبة' if a else 'Job application - Awtad Alnokhbah')}">{'أرسل سيرتك الذاتية' if a else 'Send your CV'}</a>
+<p class="hr-mail">{'أو راسلنا مباشرة على' if a else 'Or email us directly at'} <a href="{mailto(EMAIL_HR)}">{EMAIL_HR}</a></p>
+</div>
+<img src="/assets/img/meeting.webp" alt="{'فريق عمل أوتاد النخبة' if a else 'Awtad Alnokhbah team'}" loading="lazy">
 </div></section>
 {cta(lang)}'''
 

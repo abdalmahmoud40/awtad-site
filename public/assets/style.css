@@ -329,3 +329,8 @@ footer.site a:hover{color:#fff}
 .prod p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .products.full .prod p{-webkit-line-clamp:unset;display:block}
 @media (max-width:640px){.hero .cut{display:none}.figs-band{margin-top:28px}.prod p,.products.full .prod p{display:none}}
+.mails{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:10px}
+.mails span{display:block;font-size:.85rem;color:#c9cdb8}
+.mails a{direction:ltr;unicode-bidi:isolate;word-break:break-all}
+.careers .hr-mail{margin-top:14px;color:var(--muted)}
+.careers .hr-mail a{color:var(--green);font-weight:600;direction:ltr;unicode-bidi:isolate}
