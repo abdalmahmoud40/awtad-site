@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /api/
+Disallow: /careers-shell
+Disallow: /en/careers-shell
 Sitemap: https://awtad-trade.com/sitemap.xml

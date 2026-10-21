@@ -1,9 +1,25 @@
 {
   "name": "awtad",
+  "main": "src/worker.js",
   "compatibility_date": "2026-10-01",
   "assets": {
     "directory": "./public",
+    "binding": "ASSETS",
     "html_handling": "auto-trailing-slash",
-    "not_found_handling": "404-page"
-  }
+    "not_found_handling": "404-page",
+    "run_worker_first": [
+      "/api/*",
+      "/careers", "/careers/*", "/en/careers", "/en/careers/*",
+      "/careers-shell*", "/en/careers-shell*",
+      "/assets/img/*", "/assets/style.css", "/sitemap.xml"
+    ]
+  },
+  "kv_namespaces": [
+    { "binding": "KV", "id": "0012d6df8ddc471992d4435c2461f9ab" }
+  ],
+  "vars": {
+    "HR_EMAIL": "hr@awtad-trade.com",
+    "MAIL_FROM": "Awtad Careers <careers@awtad-trade.com>"
+  },
+  "observability": { "enabled": true }
 }
