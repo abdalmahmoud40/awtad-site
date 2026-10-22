@@ -637,7 +637,7 @@ open(OUT+'assets/site.js','w',encoding='utf-8').write(r"""(function(){
   if(boxes.length&&window.fetch){fetch('/api/site').then(function(r){return r.json();}).then(function(d){
     var s=d&&d.social||{},keys=['facebook','instagram','x','tiktok','linkedin'].filter(function(k){return s[k];});
     if(!keys.length) return;
-    var h=keys.map(function(k){return '<a href="'+s[k].replace(/"/g,'&quot;')+'" target="_blank" rel="noopener me" aria-label="'+SN[k]+'" title="'+SN[k]+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="'+SI[k]+'"/></svg></a>';}).join('');
+    var h=keys.map(function(k){return '<a href="'+s[k].replace(/"/g,'&quot;')+'" class="s-'+k+'" target="_blank" rel="noopener me" aria-label="'+SN[k]+'" title="'+SN[k]+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="'+SI[k]+'"/></svg></a>';}).join('');
     boxes.forEach(function(b){b.innerHTML=h;b.hidden=false;});
     document.querySelectorAll('[data-social-dt]').forEach(function(e){e.hidden=false;});
   }).catch(function(){});}
