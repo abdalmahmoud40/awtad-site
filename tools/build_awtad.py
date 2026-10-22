@@ -246,7 +246,7 @@ def page(lang, key, rel, title, desc, body, noindex=False):
   </div></div>
 </footer>
 <a class="wa-float" href="{waq(t['wa_msg'])}" target="_blank" rel="noopener" aria-label="{t['wa']}">{WA_SVG}</a>
-<script src="/assets/site.js" defer></script>
+<script src="/assets/site.js?v=20261022" defer></script>
 </body>
 </html>'''
 
@@ -584,7 +584,7 @@ for lang in ('ar','en'):
 for lang in ('ar','en'):
     pre='' if lang=='ar' else 'en/'
     sh=page(lang,'careers','careers','__T__','__D__',phead(lang,'__H__','__S__','__C__','meeting')+'<!--CAREERS-->')
-    sh=sh.replace('<script src="/assets/site.js" defer></script>','<script src="/assets/site.js" defer></script>\n<script src="/assets/careers.js" defer></script>')
+    sh=sh.replace('<script src="/assets/site.js?v=20261022" defer></script>','<script src="/assets/site.js?v=20261022" defer></script>\n<script src="/assets/careers.js" defer></script>')
     write(pre+'careers-shell.html', sh)
 write('404.html', page('ar','404','404','الصفحة غير موجودة | أوتاد النخبة','الصفحة غير موجودة.',notfound('ar'),noindex=True))
 
